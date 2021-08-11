@@ -42,7 +42,7 @@ body:
   id: qgis-version
   attributes:
     label: QGIS Version
-    description: Please enter your QGIS Version. Note: Only QGIS 3.16 and later are supported by this plugin.
+    description: "Please enter your QGIS Version. Note: Only QGIS 3.16 and later are supported by this plugin."
     placeholder: "3.20.0, ..."
   validations:
     required: true
