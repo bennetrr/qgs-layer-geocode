@@ -1,7 +1,17 @@
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
+from qgis.gui import QgsMapLayerComboBox, QgsFieldComboBox
+from qgis.core import QgsApplication
 
+from .resources import *
 from .layer_geocode_dialog import LayerGeocodeDialog
+from .geocode import GeocodeTask
+from .utils import message_bar
+
+
+# DEBUG
+# import pydevd_pycharm
+# pydevd_pycharm.settrace('localhost', port=53100, stdoutToServer=True, stderrToServer=True)
 
 
 class LayerGeocode:
@@ -92,7 +102,7 @@ class LayerGeocode:
         icon_path = ':/plugins/layer_geocode/icon.png'
         self.add_action(
             icon_path,
-            text='Layer Geocode',
+            text='Geocode Layer',
             callback=self.run,
             parent=self.iface.mainWindow())
 
@@ -105,6 +115,17 @@ class LayerGeocode:
                 'Layer Geocode',
                 action)
             self.iface.removeToolBarIcon(action)
+
+    # noinspection PyMethodMayBeStatic
+    def task_finished(self, state: bool, description: str, exception: object):
+        if state:
+            message_bar('Task successfully completed: {}'.format(description), level='success')
+        else:
+            if exception is None:
+                message_bar('Task canceled by user: {}'.format(description), level='warning')
+            else:
+                message_bar('Task exited with an error: {}; {}'.format(description, exception), level='critical')
+                raise exception
 
     def run(self):
         # Create the dialog with elements (after translation) and keep reference
@@ -120,4 +141,13 @@ class LayerGeocode:
         result = self.dlg.exec_()
         # See if OK was pressed
         if result:
-            pass
+            layer_box: QgsMapLayerComboBox = self.dlg.layer
+            field_box: QgsFieldComboBox = self.dlg.field
+
+            layer = layer_box.currentLayer()
+            field_name = field_box.currentField()
+
+            task = GeocodeTask(layer, field_name)
+            task.finished_signal.connect(self.task_finished)
+            QgsApplication.taskManager().addTask(task)
+            message_bar('Die Aufgabe "Alle Adressen bestimmen" wurde gestartet.', level='info')
