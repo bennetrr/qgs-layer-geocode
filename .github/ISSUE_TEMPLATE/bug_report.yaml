@@ -3,9 +3,10 @@ description: Create a report to help us make the plugin bug free
 labels: 'bug'
 body:
 - type: markdown
-  value: |
-    Thanks for taking the time to fill out this bug report! Please answer a few questions to make us understand the bug.
-    Please make sure that your using the newest version of this plugin and QGIS Version 3.16 or later.
+  attributes:
+    value: |
+      Thanks for taking the time to fill out this bug report! Please answer a few questions to make us understand the bug.
+      Please make sure that your using the newest version of this plugin and QGIS Version 3.16 or later.
 - type: textarea
   id: bug-desc
   attributes:
@@ -29,7 +30,8 @@ body:
     label: Expected behavior
     description: Describe what you expected to happen
 - type: markdown
-  value: '### System information'
+  attributes:
+    value: '### System information'
 - type: input
   id: os
   attributes:
