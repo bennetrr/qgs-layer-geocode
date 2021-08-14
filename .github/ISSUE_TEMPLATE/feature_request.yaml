@@ -10,10 +10,10 @@ body:
   attributes:
     label: Is your feature related to a problem?
     description: Describe the problem. Also write about workarounds and other solutions you may used.
-  validations:
-    required: true
 - type: textarea
   id: feature-desc
   attributes:
     label: Describe your feature
     description: Describe the feature you want in the plugin.
+  validations:
+    required: true
