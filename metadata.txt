@@ -10,7 +10,7 @@ version=0.1
 author=bennetr
 email=bennetr-@outlook.com
 
-about=Dieses Plugin stellt eine Flurstückssuche für NRW bereit. Sie funktioniert ähnlich wie das Geocoding-Plugin: Gemarkung, Flur und Flurstück eingeben, warten, und dann wird auf das richtige Flurstück gezoomt.
+about=This plugin geocodes a whole layer using the osm nominatim API.
 
 tracker=https://github.com/bennetrr/QGIS-Layer-Geocode/issues
 repository=https://github.com/bennetrr/QGIS-Layer-Geocode
