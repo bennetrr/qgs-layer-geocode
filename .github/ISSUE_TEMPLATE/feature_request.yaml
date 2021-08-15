@@ -1,0 +1,21 @@
+name: Feature Request
+description: Request a feature for this program.
+assignees: bennetrr
+labels: 'feature'
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thank you for taking the time to fill out this form! Please answer a few questions so we know what you want in this program.
+      Please check if the feature you want is already included in the latest version of the program or has already been suggested [here](https://github.com/bennetrr/.../issues?q=is%3Aissue+label%3Afeature).
+- type: textarea
+  id: feature-desc
+  attributes:
+    label: Describe the feature
+  validations:
+    required: true
+- type: textarea
+  id: problem-related
+  attributes:
+    label: Does the requested function refer to a problem?
+    description: Describe the problem. Also tell us about workarounds and other solutions you have used.
