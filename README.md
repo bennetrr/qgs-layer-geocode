@@ -1,3 +1,4 @@
+### Note: This repo is unmaintained!
 # QGIS-Layer-Geocode
 This plugin geocodes a whole layer using the OSM Nominatim API.
 
